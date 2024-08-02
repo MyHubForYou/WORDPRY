@@ -1,0 +1,9 @@
+include ':assetPacks:installTime'
+include ':assetPacks:installTime'
+include ':myapplication'
+project(':assetPacks:installTime').projectDir = new File(rootDir, 'android/build/assetPacks/installTime/')
+include ':assetPacks:installTime'
+include ':WORDPRYAPP'
+include ':mylibrary'
+include ':wordpry'
+include ':myapplication'

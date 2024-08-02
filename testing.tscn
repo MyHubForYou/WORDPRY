@@ -1,0 +1,720 @@
+[gd_scene load_steps=14 format=3 uid="uid://bxqmxio6cavgs"]
+
+[ext_resource type="FontFile" uid="uid://bh5wgxtqj5y44" path="res://Fonts/Bayon/Bayon-Regular.ttf" id="1_naer5"]
+[ext_resource type="Texture2D" uid="uid://d3symkfittwkf" path="res://Big_blue_sky.jpg" id="1_taj24"]
+[ext_resource type="Script" path="res://VFlowContainer.gd" id="3_gqv4n"]
+
+[sub_resource type="FontVariation" id="FontVariation_4myg4"]
+base_font = ExtResource("1_naer5")
+spacing_glyph = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnjnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h84u2"]
+
+[sub_resource type="Animation" id="Animation_6cnv2"]
+resource_name = "CLOSE"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.529412, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s61af"]
+resource_name = "CORRECT"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.0588235, 0.8, 0.494118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vdf4w"]
+resource_name = "INCORRECT"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.764706, 0, 0.286275, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_27eue"]
+resource_name = "MULTIPLE"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.290196, 0, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7pwht"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Block:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Block/Outline:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urdr7"]
+_data = {
+"CLOSE": SubResource("Animation_6cnv2"),
+"CORRECT": SubResource("Animation_s61af"),
+"INCORRECT": SubResource("Animation_vdf4w"),
+"MULTIPLE": SubResource("Animation_27eue"),
+"RESET": SubResource("Animation_7pwht")
+}
+
+[sub_resource type="Theme" id="Theme_pfmhu"]
+default_font = ExtResource("1_naer5")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control2" type="Control" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 69.0
+offset_top = 282.0
+offset_right = 438.0
+offset_bottom = 424.0
+
+[node name="GameOverScreen" type="TextureRect" parent="Control2"]
+modulate = Color(1, 0.9, 1.2, 1)
+show_behind_parent = true
+top_level = true
+layout_mode = 0
+offset_left = 806.0
+offset_top = 12.0
+offset_right = 2234.0
+offset_bottom = 1357.0
+texture = ExtResource("1_taj24")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="Control2/GameOverScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -364.5
+offset_top = 599.0
+offset_right = 366.5
+offset_bottom = 1339.0
+grow_horizontal = 2
+script = ExtResource("3_gqv4n")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Control2/GameOverScreen/VFlowContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="Control1" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "W"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control2" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "O"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control3" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "R"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control4" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "D"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control5" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "P"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control6" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "R"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="Control7" type="Control" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8"]
+custom_minimum_size = Vector2(101, 100)
+layout_direction = 2
+layout_mode = 2
+
+[node name="Block" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7"]
+self_modulate = Color(0.827451, 0.827451, 0.827451, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(99, 99)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letter" type="LineEdit" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block"]
+self_modulate = Color(0, 0, 0, 1)
+visibility_layer = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -90.5
+offset_right = 115.5
+offset_bottom = 91.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 1, 0, 0)
+theme_override_fonts/font = SubResource("FontVariation_4myg4")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qnjnu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h84u2")
+text = "Y"
+alignment = 1
+max_length = 1
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+flat = true
+caret_blink_interval = 0.15
+
+[node name="Outline" type="ColorRect" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block"]
+self_modulate = Color(0.076223, 0.997457, 0.0652871, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(101, 101)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7"]
+libraries = {
+"": SubResource("AnimationLibrary_urdr7")
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton" type="TextureButton" parent="Control2/CenterContainer"]
+top_level = true
+layout_direction = 1
+layout_mode = 2
+theme = SubResource("Theme_pfmhu")
+action_mode = 0
+
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control1/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control2/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control3/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control4/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control5/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control6/Block/Letter" method="_on_text_submitted"]
+[connection signal="text_change_rejected" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block/Letter" method="_on_text_change_rejected"]
+[connection signal="text_submitted" from="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block/Letter" to="Control2/GameOverScreen/VFlowContainer/HBoxContainer8/Control7/Block/Letter" method="_on_text_submitted"]
